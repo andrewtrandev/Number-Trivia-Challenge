@@ -1,45 +1,44 @@
-import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
+import React, { useState } from "react";
+import { Dropdown } from "semantic-ui-react";
+// ohh we need props cause we're passing in props from App.js
+const SearchBar = (props) => {
+  const [number, setNumber] = useState("");
+  const [option, setOption] = useState("");
 
-
-function SearchBar () {
-  const [number, setNumber] = useState('')
-
-
-  onFormSubmit = (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
 
     if (event.keyCode === 13) {
-      this.props.onSubmit(this.state.numberSel, this.state.option);
+      props.onSubmit(number, option);
     }
   };
 
-  render() {
+  {
     const numberOptions = [
       {
-        key: 'trivia',
-        text: 'Trivia',
-        value: 'trivia',
+        key: "trivia",
+        text: "Trivia",
+        value: "trivia",
       },
       {
-        key: 'year',
-        text: 'Year',
-        value: 'year',
+        key: "year",
+        text: "Year",
+        value: "year",
       },
       {
-        key: 'date',
-        text: 'Date',
-        value: 'date',
+        key: "date",
+        text: "Date",
+        value: "date",
       },
       {
-        key: 'math',
-        text: 'Math',
-        value: 'math',
+        key: "math",
+        text: "Math",
+        value: "math",
       },
     ];
     return (
       <div className="ui segment">
-        <div className="ui form" onSubmit={this.onFormSubmit}>
+        <div className="ui form" onSubmit={onFormSubmit}>
           <div className="field">
             <label>Search a number</label>
             <Dropdown
@@ -47,29 +46,27 @@ function SearchBar () {
               fluid
               selection
               options={numberOptions}
-              onChange={(e) =>
-                this.setState({ option: e.target.innerText.toLowerCase() })
-              }
+              onChange={(e) => setOption(e.target.innerText.toLowerCase())}
             />
             <input
               type="text"
-              value={this.state.numberSel}
-              onChange={(e) => this.setState({ numberSel: e.target.value })}
-              onKeyUp={this.onFormSubmit}
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              onKeyUp={onFormSubmit}
             />
           </div>
         </div>
       </div>
     );
   }
-}
+};
 
 export default SearchBar;
-
 
 //////////////////////////////////////////////////////
+/*
 class SearchBar extends React.Component {
-  state = { numberSel: '', option: '' };
+  state = { numberSel: "", option: "" };
 
   onFormSubmit = (event) => {
     event.preventDefault();
@@ -82,24 +79,24 @@ class SearchBar extends React.Component {
   render() {
     const numberOptions = [
       {
-        key: 'trivia',
-        text: 'Trivia',
-        value: 'trivia',
+        key: "trivia",
+        text: "Trivia",
+        value: "trivia",
       },
       {
-        key: 'year',
-        text: 'Year',
-        value: 'year',
+        key: "year",
+        text: "Year",
+        value: "year",
       },
       {
-        key: 'date',
-        text: 'Date',
-        value: 'date',
+        key: "date",
+        text: "Date",
+        value: "date",
       },
       {
-        key: 'math',
-        text: 'Math',
-        value: 'math',
+        key: "math",
+        text: "Math",
+        value: "math",
       },
     ];
     return (
@@ -130,3 +127,4 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+*/
